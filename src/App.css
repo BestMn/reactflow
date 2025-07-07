@@ -1,0 +1,90 @@
+.toolbar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    background-color: cyan;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text-updater-node {
+    border-radius: 10px;
+    box-shadow: 0 2px 20px 1px rgba(132, 139, 200, 0.1);
+    background-color: rgba(247, 248, 249, 0.7);
+}
+
+.text-updater-node:hover {
+    box-shadow: 0 2px 20px 1px rgba(132, 139, 200, 0.2);
+}
+
+.text-updater-node-header {
+    background-color: rgb(250, 225, 226);
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 10px 10px 0 0;
+}
+
+.text-updater-node-body {
+    padding: 20px;
+}
+
+.text-updater-node-footer {
+    padding: 20px 0 10px 0;
+    position: relative;
+
+    border-radius: 0 0 10px 10px;
+}
+
+.sidebar {
+    position: absolute;
+    z-index: 998;
+    right: 0px;
+    top: 0;
+    height: 100%;
+    max-width: 500px;
+    width: 100%;
+    background: rgb(212, 175, 175);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-transition: right 0.5s ease-in-out;
+    -o-transition: right 0.5s ease-in-out;
+    transition: right 0.5s ease-in-out;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.condition-node .text-updater-node-header {
+    background-color: rgba(249, 245, 200, 1);
+}
+
+.action-node .text-updater-node-header {
+    background-color: rgba(216, 248, 225, 1);
+}
+
+.text-updater-node-condition {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 10px 20px;
+    color: #818a99;
+}
+
+.react-flow__handle {
+    width: 10px !important;
+    height: 10px !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
