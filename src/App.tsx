@@ -7,6 +7,7 @@ import {
     Handle,
     Position,
     ReactFlow,
+    reconnectEdge,
     useEdgesState,
     useNodesState,
     useStoreApi,
@@ -38,13 +39,10 @@ const nodeTypes = {
 };
 
 function App() {
+    const edgeReconnectSuccessful = useRef(true);
+
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
-    const onConnect = useCallback(
-        (params) => setEdges((eds) => addEdge(params, eds)),
-        [setEdges]
-    );
 
     // Функция добавления нового узла
     const addConditionNode = () => {
@@ -79,8 +77,6 @@ function App() {
         setNodes([...nodes, newNode]);
     };
 
-    console.log(nodes);
-
     const isValidConnection = useCallback(
         (connection) => {
             const targetNode = nodes.find(
@@ -102,6 +98,28 @@ function App() {
         },
         [nodes]
     );
+
+    const onConnect = useCallback(
+        (params) => setEdges((els) => addEdge(params, els)),
+        []
+    );
+
+    const onReconnectStart = useCallback(() => {
+        edgeReconnectSuccessful.current = false;
+    }, []);
+
+    const onReconnect = useCallback((oldEdge, newConnection) => {
+        edgeReconnectSuccessful.current = true;
+        setEdges((els) => reconnectEdge(oldEdge, newConnection, els));
+    }, []);
+
+    const onReconnectEnd = useCallback((_, edge) => {
+        if (!edgeReconnectSuccessful.current) {
+            setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+        }
+
+        edgeReconnectSuccessful.current = true;
+    }, []);
 
     return (
         <div style={{ width: "100vw", height: "100vh" }}>
@@ -127,6 +145,9 @@ function App() {
                 }}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                onReconnect={onReconnect}
+                onReconnectStart={onReconnectStart}
+                onReconnectEnd={onReconnectEnd}
                 onConnect={onConnect}
                 proOptions={{ hideAttribution: true }}
             >

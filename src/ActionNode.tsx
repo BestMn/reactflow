@@ -22,8 +22,6 @@ export const ActionNode = (props) => {
         []
     );
 
-    console.log(props);
-
     const isSourceHandleHidden =
         connection.inProgress &&
         (connection.fromNode.type === "beginNode" ||
