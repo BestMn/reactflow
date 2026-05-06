@@ -42,7 +42,6 @@ function App() {
     const edgeReconnectSuccessful = useRef(true);
 
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
     // Функция добавления нового узла
     const addConditionNode = () => {
@@ -65,7 +64,7 @@ function App() {
         const newNode = {
             id: `node-${Date.now()}`, // Уникальный ID
             type: "actionNode", // Тип узла (должен быть зарегистрирован)
-            position: { x: 250, y: 250 }, // Позиция на холсте
+            position: { x: 250, y: 250 },
             data: {
                 label: `Шаг ${nodes.length}`,
                 custom: "test",
@@ -77,7 +76,7 @@ function App() {
         setNodes([...nodes, newNode]);
     };
 
-    const isValidConnection = useCallback(
+    const isValidConnection = useCallbck(
         (connection) => {
             const targetNode = nodes.find(
                 (node) => node.id === connection.target
