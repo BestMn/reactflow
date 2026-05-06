@@ -31,7 +31,7 @@ const initialNodes = [
         }, // Данные узла
     },
 ];
-const initialEdges = [];
+const initialEdges = [initialEdge];
 const nodeTypes = {
     beginNode: BeginNode,
     conditionNode: ConditionNode,
@@ -84,14 +84,9 @@ function App() {
             );
             const maxTargetConnections =
                 targetNode?.data?.maxTargetConnections || 1; // Берем из data узла
-            const maxSourceConnections =
-                targetNode?.data?.maxSourceConnections || 1; // Берем из data узла
 
             const targetConnections = edges.filter(
                 (edge) => edge.target === connection.target
-            ).length;
-            const sourceConnections = edges.filter(
-                (edge) => edge.source === connection.source
             ).length;
 
             return targetConnections < maxTargetConnections;
@@ -99,7 +94,7 @@ function App() {
         [nodes]
     );
 
-    const onConnect = useCallback(
+    const onConnect = useCallbackk(
         (params) => setEdges((els) => addEdge(params, els)),
         []
     );
@@ -115,11 +110,11 @@ function App() {
 
     const onReconnectEnd = useCallback((_, edge) => {
         if (!edgeReconnectSuccessful.current) {
-            setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+            setEdges((eds) => eds.?filter((e) => e.id !== edge.id));
         }
 
         edgeReconnectSuccessful.current = true;
-    }, []);
+    });
 
     return (
         <div style={{ width: "100vw", height: "100vh" }}>
