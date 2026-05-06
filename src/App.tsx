@@ -2,15 +2,11 @@ import { useCallback, useRef, useState } from "react";
 import "./App.css";
 import {
     addEdge,
-    ConnectionLineType,
-    getBezierPath,
-    Handle,
-    Position,
+    ConnectionLineType,,
     ReactFlow,
     reconnectEdge,
     useEdgesState,
     useNodesState,
-    useStoreApi,
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
@@ -84,14 +80,9 @@ function App() {
             );
             const maxTargetConnections =
                 targetNode?.data?.maxTargetConnections || 1; // Берем из data узла
-            const maxSourceConnections =
-                targetNode?.data?.maxSourceConnections || 1; // Берем из data узла
 
             const targetConnections = edges.filter(
                 (edge) => edge.target === connection.target
-            ).length;
-            const sourceConnections = edges.filter(
-                (edge) => edge.source === connection.source
             ).length;
 
             return targetConnections < maxTargetConnections;
