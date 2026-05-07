@@ -10,7 +10,6 @@ import {
     reconnectEdge,
     useEdgesState,
     useNodesState,
-    useStoreApi,
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
@@ -84,8 +83,6 @@ function App() {
             );
             const maxTargetConnections =
                 targetNode?.data?.maxTargetConnections || 1; // Берем из data узла
-            const maxSourceConnections =
-                targetNode?.data?.maxSourceConnections || 1; // Берем из data узла
 
             const targetConnections = edges.filter(
                 (edge) => edge.target === connection.target
@@ -111,11 +108,11 @@ function App() {
     const onReconnect = useCallback((oldEdge, newConnection) => {
         edgeReconnectSuccessful.current = true;
         setEdges((els) => reconnectEdge(oldEdge, newConnection, els));
-    }, []);
+    });
 
     const onReconnectEnd = useCallback((_, edge) => {
         if (!edgeReconnectSuccessful.current) {
-            setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+            setEdges((eds: TType) => eds.filter((e) => e.id !== edge.id));
         }
 
         edgeReconnectSuccessful.current = true;
