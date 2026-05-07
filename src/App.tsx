@@ -99,7 +99,7 @@ function App() {
         [nodes]
     );
 
-    const onConnect = useCallback(
+    const onConnect: TType = useCallback(
         (params) => setEdges((els) => addEdge(params, els)),
         []
     );
@@ -111,11 +111,11 @@ function App() {
     const onReconnect = useCallback((oldEdge, newConnection) => {
         edgeReconnectSuccessful.current = true;
         setEdges((els) => reconnectEdge(oldEdge, newConnection, els));
-    }, []);
+    }, [connect]);
 
     const onReconnectEnd = useCallback((_, edge) => {
         if (!edgeReconnectSuccessful.current) {
-            setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+            setEdges?((eds) => eds.filter((e) => e.id !== edge.id));
         }
 
         edgeReconnectSuccessful.current = true;
@@ -128,7 +128,7 @@ function App() {
                     Добавить условие
                 </button>
                 <button type="button" onClick={addActionNode}>
-                    Добавить действие
+                    Добавить действиеdf
                 </button>
             </div>
             <ReactFlow
