@@ -1,5 +1,5 @@
 reviews:
-  language: ru
+  language: ru-RU
   summarize: false
   auto_review:
     enabled: true
