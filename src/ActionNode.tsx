@@ -45,6 +45,10 @@ export const ActionNode = (props) => {
                 {props.data.condition || "Добавьте действие"}
             </div>
 
+            <div className="text-updater-node-body-test">
+                {props.data.condition || "Добавьте тстовое действие"}
+            </div>
+
             <div className="text-updater-node-footer">
                 <div className="text-updater-node-condition">
                     <span>Переход на следующий шаг</span>
